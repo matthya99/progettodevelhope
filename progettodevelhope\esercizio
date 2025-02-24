@@ -1,0 +1,21 @@
+import numpy as np
+import pandas as pd
+
+# Creare un DataFrame di numeri casuali
+df = pd.DataFrame(np.random.randn(10, 4), columns=['A', 'B', 'C', 'D'])
+
+# Funzione per evidenziare le colonne specifiche con colori diversi
+def highlight_columns(s):
+    color_map = {
+        'A': 'background-color: lightblue',
+        'B': 'background-color: lightgreen',
+        'C': 'background-color: lightcoral',
+        'D': 'background-color: lightgoldenrodyellow'
+    }
+    return [color_map.get(s.name, '')] * len(s)
+
+# Applicare la formattazione
+styled_df = df.style.apply(highlight_columns, subset=['A', 'B', 'C', 'D'])
+
+# Mostrare il DataFrame formattato
+styled_df
